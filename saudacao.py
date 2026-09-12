@@ -1,8 +1,10 @@
 def criar_saudacao(nome):
-    if not nome.strip():
+    nome = nome.strip()
+    if not nome:
         nome = "Visitante"
-    return f"Ol·, {nome}! Bem-vindo ao DevOps."
+    return f"Ol√°, {nome}! Bem-vindo ao DevOps."
 
-nome = input("Digite seu nome: ").strip()
-print(criar_saudacao(nome))
 
+if __name__ == "__main__":
+    nome = input("Digite seu nome: ")
+    print(criar_saudacao(nome))
