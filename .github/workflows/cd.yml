@@ -1,0 +1,33 @@
+name: CD - Entrega do programa
+
+on:
+  push:
+    branches: [main, ci-cd]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  entrega:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v6
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Testar antes de entregar
+        run: python -m unittest -v test_saudacao
+
+      - name: Entregar programa em ZIP
+        uses: actions/upload-artifact@v7
+        with:
+          name: programa-saudacao
+          path: saudacao.py
+          if-no-files-found: error
